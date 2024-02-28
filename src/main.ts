@@ -1,15 +1,13 @@
-import { execute, parse } from "graphql";
+import { createServer } from "http";
+import { createYoga } from "graphql-yoga";
 import { schema } from "./schema";
 
-async function main() {
-  const myQuery = parse(/* GraphQL */ `
-    query {
-      hello
-    }
-  `);
-
-  const result = await execute({ schema, document: myQuery });
-  console.log(result);
+function main() {
+  const yoga = createYoga({ schema });
+  const server = createServer(yoga);
+  server.listen(4001, () => {
+    console.info("Server is running on http://localhost:4001/graphql");
+  });
 }
 
 main();
