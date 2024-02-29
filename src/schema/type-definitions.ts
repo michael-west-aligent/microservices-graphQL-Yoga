@@ -7,6 +7,27 @@ export const typeDefinitions = /* GraphQL */ `
 
   type Mutation {
     postLink(url: String!, description: String!): Link!
+    createProduct(
+      name: String!
+      sku: String!
+      weight: Int!
+      price: Int!
+      type: ProductType!
+    ): Product!
+  }
+
+  type Product {
+    product_id: ID!
+    name: String!
+    sku: String!
+    cost: Int!
+    mass: Int!
+    type: ProductType!
+  }
+
+  enum ProductType {
+    physical
+    digital
   }
 
   type Link {
