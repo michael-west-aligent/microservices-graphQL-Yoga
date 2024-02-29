@@ -1,3 +1,4 @@
+import { createProductResolver } from "./mutations/createProduct";
 import { postLinkResolver } from "./mutations/post-link";
 import { countriesResolver } from "./queries/countries";
 import { feedResolver } from "./queries/feed";
@@ -12,5 +13,6 @@ export const resolvers = {
 
   Mutation: {
     postLink: postLinkResolver,
+    createProduct: createProductResolver,
   },
 };
