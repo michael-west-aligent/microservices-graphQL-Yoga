@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.3",
+    "axios": "^1.6.7",
     "graphql": "^16.8.1",
     "graphql-yoga": "5.1.1",
     "yarn": "^1.22.21"
