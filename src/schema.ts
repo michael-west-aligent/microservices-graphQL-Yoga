@@ -1,9 +1,14 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { link } from "fs/promises";
 
 const typeDefinitions = /* GraphQL */ `
   type Query {
     info: String!
     feed: [Link!]!
+  }
+
+  type Mutation {
+    postLink(url: String!, description: String!): Link!
   }
 
   type Link {
@@ -13,14 +18,12 @@ const typeDefinitions = /* GraphQL */ `
   }
 `;
 
-// 1
 type Link = {
   id: string;
   url: string;
   description: string;
 };
 
-// 2
 const links: Link[] = [
   {
     id: "link-0",
@@ -32,14 +35,24 @@ const links: Link[] = [
 const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
-    // 3
     feed: () => links,
   },
-  // 4
-  Link: {
-    id: (parent: Link) => parent.id,
-    description: (parent: Link) => parent.description,
-    url: (parent: Link) => parent.url,
+  Mutation: {
+    postLink: (_root: unknown, args: { description: string; url: string }) => {
+      // 1
+      let idCount = links.length;
+
+      // 2
+      const link: Link = {
+        id: `link-${idCount}`,
+        description: args.description,
+        url: args.url,
+      };
+
+      links.push(link);
+
+      return link;
+    },
   },
 };
 
@@ -47,7 +60,3 @@ export const schema = makeExecutableSchema({
   resolvers: [resolvers],
   typeDefs: [typeDefinitions],
 });
-
-//The GraphQL fragment is starts at the end of line 1 and ends on line 5
-//GraphQL has native types i.e String, Int, ID -> they must use capital letters
-//Information can be found -> https://graphql.org/learn/schema/
