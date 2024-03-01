@@ -1,9 +1,11 @@
 import { links } from "../../mock/data";
-import { Link } from "../../types";
+import { Link, MutationResolvers } from "../../generated/graphql";
 
-export const postLinkResolver = (
-  _root: unknown,
-  args: { description: string; url: string }
+export const postLinkResolver: MutationResolvers["postLink"] = async (
+  _root,
+  args,
+  _context,
+  _info
 ) => {
   let idCount = links.length;
 

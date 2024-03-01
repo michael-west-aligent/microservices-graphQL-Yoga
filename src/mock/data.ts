@@ -1,4 +1,4 @@
-import { Link } from "../types";
+import { Link } from "../generated/graphql";
 
 export const links: Link[] = [
   {
