@@ -1,4 +1,4 @@
-import { links } from "../../mock-data/mock-data";
+import { links } from "../../mock/data";
 import { Link } from "../../types";
 
 export const postLinkResolver = (
