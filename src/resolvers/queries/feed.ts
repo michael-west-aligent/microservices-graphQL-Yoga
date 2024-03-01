@@ -1,3 +1,3 @@
-import { links } from "../../mock-data/mock-data";
+import { links } from "../../mock/data";
 
 export const feedResolver = () => links;
