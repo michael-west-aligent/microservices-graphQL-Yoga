@@ -1,11 +1,12 @@
 import axios from "axios";
+import { Country, QueryResolvers } from "../../generated/graphql";
 
 const headers = {
   "X-Auth-Token": "2dwb7v48ai89ng29a4miz3dyah2bxi1",
 };
 const STORE_HASH = "xxazhvt7gd";
 
-export const countriesResolver = async () => {
+export const countriesResolver: QueryResolvers["countries"] = async () => {
   const url = `https://api.bigcommerce.com/stores/${STORE_HASH}/v2/countries`;
 
   try {
